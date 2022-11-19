@@ -69,7 +69,7 @@ mysqli_close($connect);
 <body>
     <div class="manageProduct w-75 mt-3">
         <div class='mb-3'>
-            <a href="../animals/seniors.php"><button class='btn btn-success' type="button">Show Seniors</button></a>
+            <a href="../animals/home.php"><button class='btn btn-warning' type="button">Back</button></a>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 cont">
             <?= $tbody; ?>

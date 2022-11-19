@@ -31,7 +31,6 @@ if (mysqli_num_rows($result) > 0) {
                 <h4 class='card-header text-center'>" . $row['name'] . "</br>" . $row['breed'] . "</h4>
 
                 <div class='card-body p-2'>
-                    <p class='h5 card-text text-center'>" . $row['status'] . "</p>
                     <p class='card-text'>" . $row['description'] . "</p>
                     <p class='h6'>
                     Age: " . $row['age'] . " years 
@@ -106,7 +105,7 @@ mysqli_close($connect);
     </div>
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-    <a class="nav-link text-center" href="#">Logged in as <?php echo $row['first_name'] . " " . $row['last_name'] ;?></a>
+    <a class="nav-link text-center" href="../home.php">Logged in as <?php echo $row['first_name'] . " " . $row['last_name'] ;?></a>
     </li>
     </ul>
   </div>
