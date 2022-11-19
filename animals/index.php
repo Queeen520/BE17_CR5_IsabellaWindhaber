@@ -14,22 +14,27 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
 
 
 
-$sql = "SELECT * FROM hotels";
+$sql = "SELECT * FROM animals";
 $result = mysqli_query($connect, $sql);
 $tbody = ''; //this variable will hold the body for the table
 if (mysqli_num_rows($result)  > 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $tbody .= "<tr>
-            <td><img class='img-thumbnail' src='../pictures/" . $row['picture'] . "'</td>
+            <td><img class='img-thumbnail' src='../pictures/" . $row['picture'] . "'></td>
             <td>" . $row['name'] . "</td>
-            <td>" . $row['city'] . "</td>
-            <td>" . $row['stars'] . "</td>
+            <td>" . $row['located'] . "</td>
+            <td>" . $row['size'] . "</td>
+            <td>" . $row['age'] . "</td>
+            <td>" . $row['vaccinated'] . "</td>
+            <td>" . $row['breed'] . "</td>
+            <td>" . $row['description'] . "</td>
+            <td>" . $row['status'] . "</td>
             <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
             </tr>";
     };
 } else {
-    $tbody =  "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
+    $tbody =  "<tr><td colspan='9'><center>No Data Available </center></td></tr>";
 }
 
 mysqli_close($connect);
@@ -67,17 +72,22 @@ mysqli_close($connect);
 <body>
     <div class="manageProduct w-75 mt-3">
         <div class='mb-3'>
-            <a href="create.php"><button class='btn btn-primary' type="button">Add Hotel</button></a>
+            <a href="create.php"><button class='btn btn-primary' type="button">Add Animal</button></a>
             <a href="../dashboard.php"><button class='btn btn-success' type="button">User Dashboard</button></a>
         </div>
-        <p class='h2'>Hotels</p>
+        <p class='h2'>Animals</p>
         <table class='table table-striped'>
             <thead class='table-success'>
                 <tr>
                     <th>Picture</th>
                     <th>Name</th>
                     <th>Located</th>
-                    <th>Stars</th>
+                    <th>Size</th>
+                    <th>Age</th>
+                    <th>Vaccinated</th>
+                    <th>Breed</th>
+                    <th>Description</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>

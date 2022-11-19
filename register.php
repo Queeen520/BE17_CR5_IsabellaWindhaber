@@ -15,7 +15,7 @@ require_once 'components/file_upload.php';
 
 $error = false;
 
-$firstname = $lastname = $email = $phone = $pass = $picture = "";
+$firstname = $lastname = $email = $phone = $address = $password = $picture = "";
 $fnameError = $lnameError = $phoneError = $emailError = $passError = $picError = "";
 
 
@@ -36,9 +36,9 @@ if (isset($_POST['btn-signup'])) {
     $phone = strip_tags($phone);
     $phone = htmlspecialchars($phone);
 
-    $pass = trim($_POST['pass']);
-    $pass = strip_tags($pass);
-    $pass = htmlspecialchars($pass);
+    $password = trim($_POST['password']);
+    $password = strip_tags($password);
+    $password = htmlspecialchars($password);
 
     $uploadError = "";
     $picture = file_upload($_FILES['picture']);
@@ -79,19 +79,19 @@ if (isset($_POST['btn-signup'])) {
         }
     }
 
-    if (empty($pass)) {
+    if (empty($password)) {
         $error = true;
         $passError = "Please enter the password";
-    } elseif (strlen($pass) < 6) {
+    } elseif (strlen($password) < 6) {
         $error = true;
         $passError = "Password must have at least 6 characters";
     }
 
-    $password = hash('sha256', $pass);
+    $password = hash('sha256', $password);
 
     if (!$error) {
-        $query = "INSERT INTO users(firstname, lastname, password, email, phone, picture) 
-        VALUES ('$firstname', '$lastname','$password','$email', '$phone', '$picture->fileName')";
+        $query = "INSERT INTO users(first_name, last_name, email, phone_number, address, password, picture) 
+        VALUES ('$firstname', '$lastname','$email', '$phone', '$address', '$password', '$picture->fileName')";
 
         $res = mysqli_query($connect, $query);
 
@@ -160,6 +160,12 @@ mysqli_close($connect);
                                         <span class="text-danger"> <?php echo $phoneError; ?> </span>
                                     </div>
                                 </div>
+                                <div class="col-md-6 mb-4 d-flex align-items-center">
+                                    <div class="form-outline datepicker w-100">
+                                        <input class='form-control' type="text" name="address" placeholder="Address" value="<?php echo $address ?>" />
+                                        <span class="text-danger"> <?php echo $phoneError; ?> </span>
+                                    </div>
+                                </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input class='form-control' type="file" name="picture">
@@ -177,7 +183,7 @@ mysqli_close($connect);
                                 </div>
                                 <div class="col-md-12 mb-4 pb-2">
                                     <div class="form-outline">
-                                        <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlength="15" />
+                                        <input type="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
                                         <span class="text-danger"> <?php echo $passError; ?> </span>
                                     </div>
 

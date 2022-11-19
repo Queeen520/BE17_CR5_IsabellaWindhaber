@@ -75,7 +75,7 @@ mysqli_close($connect);
                     <h5 class="my-4">Administrator</h5>
                     <div class="d-flex justify-content-center mb-2">
                         <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
-                        <a class="btn btn-success ms-1" href="hotels/index.php">Update Hotels</a>
+                        <a class="btn btn-success ms-1" href="animals/index.php">Update Animals</a>
 
                     </div>
                 </div>
