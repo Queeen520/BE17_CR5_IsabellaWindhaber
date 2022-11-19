@@ -20,15 +20,29 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
 
 mysqli_close($connect);
 
+
 if ($_POST) {
     $fk_user = $_POST['fk_user'];
-    $fk_pet = $_POST['fk_pet'];
-    $a_date = date('Y-m-d H:i:s');
+    $fk_animal = $_POST['fk_animal'];
 
-    $sql = "INSERT INTO adoption (a_date, fk_user, fk_pet) VALUES ('$a_date', $fk_user, $fk_pet)";
+    $sql = "INSERT INTO pet_adoption (fk_user, fk_pet) VALUES ($fk_user, $fk_animal)";
     $result = mysqli_query($connect, $sql);
-    $sql3 = "UPDATE animals SET status = 0 WHERE id = {$fk_pet}";
-    $res3 = mysqli_query($connect, $sql3);
-}
+
+    $sql2 = "UPDATE animals SET status = 'Adopted' WHERE id = {$fk_animal}";
+    $res2 = mysqli_query($connect, $sql2);
+
+    if ($result === true and $res2 === true) {
+        $class = "success";
+        $message = "Congratulations," . $row1['first_name'] . " " . $row1['last_name'] . "!<br>
+            Youre adoption was successfull ! ";
+    } else {
+        $class = "danger";
+        $message = "Error while creating record. Try again: <br>" . $connect->error;
+    }
+    mysqli_close($connect);
+} else {
+    header("location: ../error.php");
+};
+
 
 ?>
