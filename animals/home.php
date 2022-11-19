@@ -28,10 +28,10 @@ if (mysqli_num_rows($result) > 0) {
         <div class='col p-3'>
             <div class='card p-0 shadow-lg bg-body rounded all-animals'>
                 <img class='card-img-top' src='../pictures/" . $row['picture'] . "'alt='" . $row['name'] . "'>
-                <h4 class='card-header text-center'>" . $row['name'] . "</h4>
+                <h4 class='card-header text-center'>" . $row['name'] . "</br>" . $row['breed'] . "</h4>
+
                 <div class='card-body p-2'>
-                    <p class='h5 card-text text-center'>" . $row['breed'] . "</p>
-                    <p class='card-text'>" . $row['status'] . "</p>
+                    <p class='h5 card-text text-center'>" . $row['status'] . "</p>
                     <p class='card-text'>" . $row['description'] . "</p>
                     <p class='h6'>
                     Age: " . $row['age'] . " years 
