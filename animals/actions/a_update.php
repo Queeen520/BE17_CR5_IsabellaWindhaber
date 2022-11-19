@@ -7,7 +7,7 @@ if (isset($_SESSION['user']) != "") {
 }
 
 if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
-    header("Location: ../../index.php");
+    header("Location: ../../update.php");
     exit;
 }
 
@@ -18,18 +18,23 @@ require_once '../../components/file_upload.php';
 
 if ($_POST) {
     $name = $_POST['name'];
-    $price = $_POST['price'];
-    $supplier = $_POST['supplier'];
-    $id = $_POST['id'];
+    $located = $_POST['located'];
+    $size = $_POST['size'];
+    $age = $_POST['age'];
+    $vaccinated = $_POST['vaccinated'];
+    $breed = $_POST['breed'];
+    $description = $_POST['description'];
+    $status = $_POST['status'];
+
     //variable for upload pictures errors is initialised
     $uploadError = '';
 
     $picture = file_upload($_FILES['picture'], 'product'); //file_upload() called  
     if ($picture->error === 0) {
-        ($_POST["picture"] == "product.png") ?: unlink("../pictures/$_POST[picture]");
-        $sql = "UPDATE products SET name = '$name', price = $price, picture = '$picture->fileName', fk_supplierId = $supplier WHERE id = {$id}";
+        ($_POST["picture"] == "animal.png") ?: unlink("../../pictures/$_POST[picture]");
+        $sql = "UPDATE animals SET name = '$name', located = $located, size = '$size', age = '$age', vaccinated = '$vaccinated', breed = '$breed', description = '$description', status = '$status', picture = '$picture->fileName'";
     } else {
-        $sql = "UPDATE products SET name = '$name', price = $price, fk_supplierId = $supplier WHERE id = {$id}";
+        $sql = "UPDATE animals SET name = '$name', located = $located, size = '$size', age = '$age', vaccinated = '$vaccinated', breed = '$breed', description = '$description', status = '$status'";
     }
     if (mysqli_query($connect, $sql) === TRUE) {
         $class = "success";

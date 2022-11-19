@@ -15,27 +15,20 @@ require_once '../components/db_connect.php';
 
 if ($_GET['id']) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM products WHERE id = {$id}";
+    $sql = "SELECT * FROM animals WHERE id = {$id}";
     $result = mysqli_query($connect, $sql);
     if (mysqli_num_rows($result) == 1) {
         $data = mysqli_fetch_assoc($result);
-        $name = $data['name'];
-        $price = $data['price'];
-        $picture = $data['picture'];
-        $supplier = $data['fk_supplierId'];
-        $resultSup = mysqli_query($connect, "SELECT * FROM suppliers");
-        $supList = "";
-        if (mysqli_num_rows($resultSup) > 0) {
-            while ($row = $resultSup->fetch_array(MYSQLI_ASSOC)) {
-                if ($row['supplierId'] == $supplier) {
-                    $supList .= "<option selected value='{$row['supplierId']}'>{$row['sup_name']}</option>";
-                } else {
-                    $supList .= "<option value='{$row['supplierId']}'>{$row['sup_name']}</option>";
-                }
-            }
-        } else {
-            $supList = "<li>There are no suppliers registered</li>";
-        }
+
+    $name = $data['name'];
+    $located = $data['located'];
+    $size = $data['size'];
+    $age = $data['age'];
+    $vaccinated = $data['vaccinated'];
+    $breed = $data['breed'];
+    $description = $data['description'];
+    $status = $data['status'];
+
     } else {
         header("location: error.php");
     }
@@ -49,7 +42,7 @@ if ($_GET['id']) {
 <html>
 
 <head>
-    <title>Edit Product</title>
+    <title>Edit Animal</title>
     <?php require_once '../components/boot.php' ?>
     <style type="text/css">
         fieldset {
@@ -67,28 +60,44 @@ if ($_GET['id']) {
 
 <body>
     <fieldset>
-        <legend class='h2'>Update request <img class='img-thumbnail rounded-circle' src='pictures/<?php echo $picture ?>' alt="<?php echo $name ?>"></legend>
+        <legend class='h2'>Update request <img class='img-thumbnail rounded-circle' src='../pictures/<?php echo $picture ?>' alt="<?php echo $name ?>"></legend>
         <form action="actions/a_update.php" method="post" enctype="multipart/form-data">
             <table class="table">
-                <tr>
+            <tr>
                     <th>Name</th>
-                    <td><input class="form-control" type="text" name="name" placeholder="Product Name" value="<?php echo $name ?>" /></td>
+                    <td><input class='form-control' type="text" name="name" placeholder="Name" /></td>
                 </tr>
                 <tr>
-                    <th>Price</th>
-                    <td><input class="form-control" type="number" name="price" step="any" placeholder="Price" value="<?php echo $price ?>" /></td>
+                    <th>Located</th>
+                    <td><input class='form-control' type="text" name="located" placeholder="Located" step="any" /></td>
+                </tr>
+                <tr>
+                    <th>Size</th>
+                    <td><input class='form-control' type="text" name="size" placeholder="Size" step="any" /></td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td><input class='form-control' type="number" name="age" placeholder="Age" step="any" /></td>
+                </tr>
+                <tr>
+                    <th>Vaccinated</th>
+                    <td><input class='form-control' type="text" name="vaccinated" placeholder="Yes / No" step="any" /></td>
+                </tr>
+                <tr>
+                    <th>Breed</th>
+                    <td><input class='form-control' type="text" name="breed" placeholder="Breed" step="any" /></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td><input class='form-control' type="text" name="description" placeholder="Short description" step="any" /></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td><input class='form-control' type="text" name="status" placeholder="Adopted / Available" step="any" /></td>
                 </tr>
                 <tr>
                     <th>Picture</th>
-                    <td><input class="form-control" type="file" name="picture" /></td>
-                </tr>
-                <tr>
-                    <th>Supplier</th>
-                    <td>
-                        <select class="form-select" name="supplier" aria-label="Default select example">
-                            <?php echo $supList; ?>
-                        </select>
-                    </td>
+                    <td><input class='form-control' type="file" name="picture" /></td>
                 </tr>
                 <tr>
                     <input type="hidden" name="id" value="<?php echo $data['id'] ?>" />

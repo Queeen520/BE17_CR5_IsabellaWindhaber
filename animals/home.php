@@ -96,7 +96,7 @@ mysqli_close($connect);
 
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="animals/home.php">
+    <a class="navbar-brand" href="home.php">
     <img src="../pictures/animal.png" alt="Logo" width="35" height="35" class="d-inline-block align-text-top">
     Pet Adoption</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

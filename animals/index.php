@@ -27,14 +27,13 @@ if (mysqli_num_rows($result)  > 0) {
             <td>" . $row['age'] . "</td>
             <td>" . $row['vaccinated'] . "</td>
             <td>" . $row['breed'] . "</td>
-            <td>" . $row['description'] . "</td>
             <td>" . $row['status'] . "</td>
             <td><a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
             <a href='delete.php?id=" . $row['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
             </tr>";
     };
 } else {
-    $tbody =  "<tr><td colspan='9'><center>No Data Available </center></td></tr>";
+    $tbody =  "<tr><td colspan='8'><center>No Data Available </center></td></tr>";
 }
 
 mysqli_close($connect);
@@ -86,7 +85,6 @@ mysqli_close($connect);
                     <th>Age</th>
                     <th>Vaccinated</th>
                     <th>Breed</th>
-                    <th>Description</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>

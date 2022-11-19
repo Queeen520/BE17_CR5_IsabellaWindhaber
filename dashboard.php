@@ -19,9 +19,9 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
         $tbody .= "
             <tr>
-            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['firstname'] . "></td>
-            <td>" . $row['firstname'] . " " . $row['lastname'] . "</td>
-            <td>" . $row['phone'] . "</td>
+            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['first_name'] . "></td>
+            <td>" . $row['first_name'] . " " . $row['last_name'] . "</td>
+            <td>" . $row['phone_number'] . "</td>
             <td>" . $row['email'] . "</td>
             <td>
             <a href='update.php?id=" . $row['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
@@ -32,7 +32,28 @@ if ($result->num_rows > 0) {
 } else {
     $tbody = "<tr><td colspan='9'><center>No Data Available </center></td></tr>";
 }
-
+/* IS NOT WORKING CORRECT
+$sql1 = "SELECT * FROM animals";
+$res = mysqli_query($connect, $sql1);
+$tbody_animals = '';
+if ($res->num_rows > 0) {
+    while ($row1 = $res->fetch_array(MYSQLI_ASSOC)) {
+        $tbody .= "
+            <tr>
+            <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row1['picture'] . "' alt=" . $row1['name'] . "></td>
+            <td>" . $row1['name'] . " " . $row1['breed'] . "</td>
+            <td>" . $row1['size'] . "</td>
+            <td>" . $row1['email'] . "</td>
+            <td>
+            <a href='update.php?id=" . $row1['id'] . "'><button class='btn btn-primar btn-sm' type='button'>Edit</button></a>
+            <a href='delete.php?id=" . $row1['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a>
+            </td>
+         </tr>";
+    }
+} else {
+    $tbody = "<tr><td colspan='9'><center>No Data Available </center></td></tr>";
+}
+*/
 mysqli_close($connect);
 ?>
 
@@ -77,10 +98,10 @@ mysqli_close($connect);
                     <div class="d-flex justify-content-center mb-2">
                         <a class="btn btn-outline-primary ms-1" href="logout.php?logout">Log Out</a>
                         <a class="btn btn-success ms-1" href="animals/index.php">Update Animals</a>
-
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-8 mt-2">
                 <p class='h2'>Users</p>
                 <table class='table align-middle mb-0 bg-white'>
