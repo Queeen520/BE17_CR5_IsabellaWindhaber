@@ -17,7 +17,8 @@ $result = mysqli_query($connect, $sql);
 $tbody = '';
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-        $tbody .= "<tr>
+        $tbody .= "
+            <tr>
             <td><img class='img-thumbnail rounded-circle' src='pictures/" . $row['picture'] . "' alt=" . $row['firstname'] . "></td>
             <td>" . $row['firstname'] . " " . $row['lastname'] . "</td>
             <td>" . $row['phone'] . "</td>
@@ -29,7 +30,7 @@ if ($result->num_rows > 0) {
          </tr>";
     }
 } else {
-    $tbody = "<tr><td colspan='5'><center>No Data Available </center></td></tr>";
+    $tbody = "<tr><td colspan='9'><center>No Data Available </center></td></tr>";
 }
 
 mysqli_close($connect);
