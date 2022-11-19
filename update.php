@@ -25,10 +25,11 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($connect, $sql);
     if (mysqli_num_rows($result) == 1) {
         $data = mysqli_fetch_assoc($result);
-        $firstname = $data['firstname'];
-        $lastname = $data['lastname'];
+        $firstname = $data['first_name'];
+        $lastname = $data['last_name'];
         $email = $data['email'];
-        $phone = $data['phone'];
+        $phone = $data['phone_number'];
+        $address = $data['address'];
         $picture = $data['picture'];
     }
 }
@@ -36,10 +37,11 @@ if (isset($_GET['id'])) {
 //update
 $class = 'd-none';
 if (isset($_POST["submit"])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $firstname = $_POST['first_name'];
+    $lastname = $_POST['last_name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    $address = $_POST['address'];
     $id = $_POST['id'];
     //variable for upload pictures errors is initialized
     $uploadError = '';
@@ -47,9 +49,9 @@ if (isset($_POST["submit"])) {
     $picture = $pictureArray->fileName;
     if ($pictureArray->error === 0) {
         ($_POST["picture"] == "avatar.png") ?: unlink("pictures/{$_POST["picture"]}");
-        $sql = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', phone = '$phone', picture = '$pictureArray->fileName' WHERE id = {$id}";
+        $sql = "UPDATE users SET first_name = '$firstname', last_name = '$lastname', email = '$email', address = '$address', phone_number = '$phone', picture = '$pictureArray->fileName' WHERE id = {$id}";
     } else {
-        $sql = "UPDATE users SET firstname = '$firstname', lastname = '$lastname', email = '$email', phone = '$phone' WHERE id = {$id}";
+        $sql = "UPDATE users SET first_name = '$firstname', last_name = '$lastname', email = '$email', address = '$address', phone_number = '$phone' WHERE id = {$id}";
     }
     if (mysqli_query($connect, $sql) === true) {
         $class = "alert alert-success";
@@ -115,6 +117,10 @@ mysqli_close($connect);
                 <tr>
                     <th>Phone Number</th>
                     <td><input class="form-control" type="number" name="phone" placeholder="Phone Number" value="<?php echo $phone ?>" /></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td><input class="form-control" type="number" name="address" placeholder="Address" value="<?php echo $adress ?>" /></td>
                 </tr>
                 <tr>
                     <th>Picture</th>

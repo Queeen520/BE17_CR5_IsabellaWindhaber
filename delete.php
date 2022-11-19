@@ -19,10 +19,11 @@ if ($_GET['id']) {
     $result = mysqli_query($connect, $sql);
     $data = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) == 1) {
-        $firstname = $data['firstname'];
-        $lastname = $data['lastname'];
+        $firstname = $data['first_name'];
+        $lastname = $data['last_name'];
         $email = $data['email'];
         $phone = $data['phone'];
+        $address = $data['address'];
         $picture = $data['picture'];
     }
 }
