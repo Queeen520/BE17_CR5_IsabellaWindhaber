@@ -28,9 +28,8 @@ if ($_GET['id']) {
         $name = $data['name'];
         $breed = $data['breed'];
         $size = $data["size"];
-        $location = $data["location"];
+        $located = $data["located"];
         $description = $data["description"];
-        $hobby = $data["hobby"];
         $age = $data["age"];
         $status = $data["status"];
         $picture = $data["picture"];
@@ -49,6 +48,7 @@ if ($_GET['id']) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php require_once '../components/boot.php' ?>
     <title>Document</title>
 </head>
 
@@ -63,6 +63,10 @@ if ($_GET['id']) {
                 <div class="col-md-8">
                     <div class='card-header text-center'>
                         <form action="a_adopt.php" method="POST" enctype="multipart/form-data">
+                        <div class='card-body p-2'>
+                        <p class='card-text'><b> Age: </b> <?php echo $age; ?></p>
+                        <p class='card-text'><b> Size: </b> <?php echo $size; ?></p>
+                        </div>
                             <tr>
                                 <p class="h2">Do you really want to adopt this pet?</p>
                                 <input type="hidden" name="fk_user" value="<?php echo $row1['id'] ?>" />
@@ -72,15 +76,7 @@ if ($_GET['id']) {
                             </tr>
                         </form>
                     </div>
-                    <div class='card-body p-2'>
-                        <p class='card-text'><b> Age: </b> <?php echo $age; ?></p>
-                        <p class='card-text'><b> Size: </b> <?php echo $size; ?></p>
-                        <p class='card-text'><b> Location: </b> <?php echo $location; ?></p>
-                        <p class='card-text'><?=$description?></p>
-                    </div>
-                    <h4 class='card-footer text-center'>
-                        <?php echo $breed . " called ".$name; ?>
-                    </h4>
+
                 </div>
             </div>
         </div>
