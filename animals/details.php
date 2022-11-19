@@ -44,6 +44,7 @@ if ($_GET['id']) {
     header("location: error.php");
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +58,6 @@ if ($_GET['id']) {
 </head>
 
 <body>
-
     <main class="p-5">
         <div class="card mb-3">
             <div class="row g-0">
