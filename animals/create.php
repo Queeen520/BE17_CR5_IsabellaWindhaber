@@ -2,6 +2,11 @@
 
 require_once '../components/db_connect.php';
 
+if (isset($_SESSION['user'])) {
+    header("Location: ../register.php");
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
